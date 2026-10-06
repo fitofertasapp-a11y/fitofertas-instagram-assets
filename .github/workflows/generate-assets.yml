@@ -4,6 +4,8 @@ on:
     paths:
       - 'generate_carousel.py'
       - 'generate_stories.py'
+      - '.github/workflows/generate-assets.yml'
+  workflow_dispatch:
 permissions:
   contents: write
 jobs:
@@ -15,11 +17,10 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install pillow
-      - run: python generate_carousel.py
       - run: python generate_stories.py
       - run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add posts/ stories/
-          git diff --cached --quiet || git commit -m "Generate FitOfertas carousel assets"
+          git add stories/
+          git diff --cached --quiet || git commit -m "Generate FitOfertas Story assets"
           git push
