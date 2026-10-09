@@ -5,6 +5,7 @@ on:
       - 'publish_carousel_2026_10_07.py'
       - 'publish_story_2026_10_07.py'
       - 'publish_benefits_post_2026_10_07.py'
+      - 'generate_today_2026_10_09.py'
       - '.github/workflows/generate-assets.yml'
   workflow_dispatch:
 permissions:
@@ -21,9 +22,10 @@ jobs:
       - run: python publish_carousel_2026_10_07.py
       - run: python publish_story_2026_10_07.py
       - run: python publish_benefits_post_2026_10_07.py
+      - run: python generate_today_2026_10_09.py
       - run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add carousels/ stories/ posts/
+          git add carousels/ stories/ posts/ today/
           git diff --cached --quiet || git commit -m "Generate approved FitOfertas Instagram assets"
           git push
